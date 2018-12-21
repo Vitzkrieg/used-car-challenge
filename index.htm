@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <title>Used Car Value Challenge</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script>
+        function get_used_value() {
+            let value = $('#value').val() || 0;
+            let age = $('#age').val() || 0;
+            let miles = $('#miles').val() || 0;
+            let owners = $('#owners').val() || 0;
+            let collisions = $('#collisions').val() || 0;
+            let data = {
+                    value: value,
+                    age: age,
+                    miles: miles,
+                    owners: owners,
+                    collisions: collisions
+                };
+
+            $.ajax({
+                url: 'http://127.0.0.1:8081/get_used_value',
+                type:'GET',
+                dataType: 'json',
+                data: data
+            }).fail(function(xhr, status, error) {
+                alert(status + ' : ' + error);
+            }).done(function(data) {
+                console.dir(data.used_value);
+                $('#used_value').val(data.used_value);
+            });
+
+            return false;
+        }
+    </script>
+</head>
+
+<body>
+    <h2>Used Car Value Calculator</h2>
+    <p>Enter the values in the form to see the used car value.</p>
+    <form onSubmit="return get_used_value();">
+        <p><label for="value">Current Value:</label><input type="text" id="value" name="value"></p>
+        <p><label for="age">Age (in months):</label><input type="text" id="age" name="age"></p>
+        <p><label for="miles">Miles:</label><input type="text" id="miles" name="miles"></p>
+        <p><label for="owners">Previous Owners:</label><input type="text" id="owners" name="owners"></p>
+        <p><label for="collisions">Collisions:</label><input type="text" id="collisions" name="collisions"></p>
+        <input type="submit" value="Submit">
+    </form>
+    <p><label for="used_value">Used Value:</label><input type="text" id="used_value" name="used_value"></p>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</body>
+
+</html>
