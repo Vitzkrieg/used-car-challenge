@@ -1,0 +1,21 @@
+html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+}
+
+form p {
+    width: 100%;
+    max-width: 280px;
+    margin: 10px auto;
+    text-align: right;
+}
+
+form label {
+    margin-right: 5px;
+}
