@@ -6,13 +6,13 @@
 
     <script>
         function get_used_value() {
-            let curr_value = $('#curr_value').val() || 0;
+            let value = $('#value').val() || 0;
             let age = $('#age').val() || 0;
             let miles = $('#miles').val() || 0;
-            let owners = $('#ownsers').val() || 0;
+            let owners = $('#owners').val() || 0;
             let collisions = $('#collisions').val() || 0;
             let data = {
-                    curr_value: curr_value,
+                    value: value,
                     age: age,
                     miles: miles,
                     owners: owners,
@@ -40,7 +40,7 @@
     <h2>Used Car Value Calculator</h2>
     <p>Enter the values in the form to see the used car value.</p>
     <form onSubmit="return get_used_value();">
-        <p><label for="curr_value">Current Value:</label><input type="text" id="curr_value" name="curr_value"></p>
+        <p><label for="value">Current Value:</label><input type="text" id="value" name="value"></p>
         <p><label for="age">Age (in months):</label><input type="text" id="age" name="age"></p>
         <p><label for="miles">Miles:</label><input type="text" id="miles" name="miles"></p>
         <p><label for="owners">Previous Owners:</label><input type="text" id="owners" name="owners"></p>

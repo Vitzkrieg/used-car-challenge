@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 
 app.use(express.static('public'));
+app.use(bodyParser.json());
+
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + "/" + "index.htm");
@@ -10,7 +12,7 @@ app.get('/index.htm', function (req, res) {
     res.sendFile(__dirname + "/" + "index.htm");
 });
 
-app.get('/get_used_value', function (req, res) {
+app.get('/get_used_value', function (req, res, next) {
 
     let data = req.query;
     let value = 0;
@@ -19,10 +21,11 @@ app.get('/get_used_value', function (req, res) {
         res.json({
             used_value: value
         });
+        next();
         return;
     }
 
-    value = data.curr_value;
+    value = data.value;
     let age = data.age;
     let miles = data.miles;
     let owners = data.owners;
@@ -32,6 +35,7 @@ app.get('/get_used_value', function (req, res) {
         res.json({
             used_value: 0
         });
+        next();
         return;
     }
 
